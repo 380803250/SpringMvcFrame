@@ -1,0 +1,10 @@
+com\Springmvc\annotation\Autowired.class
+com\bruce\controller\UserController.class
+com\Springmvc\annotation\RequestPram.class
+com\Springmvc\annotation\RequestMapping.class
+com\Springmvc\annotation\Controller.class
+com\Springmvc\context\WebApplicationContext.class
+com\Springmvc\servlet\DispatcherServlet.class
+com\bruce\service\UserService.class
+com\bruce\pojo\User.class
+com\bruce\service\imple\UserServiceImple.class

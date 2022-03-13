@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+<!--    通过注解来表示要扫描的包-->
+    <components-scan base-package="com.bruce.service,com.bruce.controller"></components-scan>
+</beans>
