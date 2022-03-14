@@ -8,6 +8,7 @@
     <servlet-class>com.Springmvc.servlet.DispatcherServlet</servlet-class>
 <!--    mvc控制文件-->
     <init-param>
+<!--      初始化时通过contextConfigLocation拿到容器配置文件-->
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:springmvc.xml</param-value>
     </init-param>

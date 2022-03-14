@@ -13,6 +13,7 @@
     </init-param>
     <load-on-startup>1</load-on-startup>  <!--web服务器启动就会实例化创建对象并且初始化-->
   </servlet>
+<!--  servlet分发路径-->
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>

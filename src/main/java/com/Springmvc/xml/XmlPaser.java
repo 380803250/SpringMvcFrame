@@ -12,8 +12,13 @@ import java.lang.annotation.Documented;
 
 //解析类,解析XML文件中的内容
 public class XmlPaser {
-    public static String getBasePackage(String path){
 
+    /***
+     * 获得路径下的所有包
+     * @param path
+     * @return
+     */
+    public static String getBasePackage(String path){
         try {
             SAXReader saxReader = new SAXReader();
             //读取xml文件
@@ -34,4 +39,5 @@ public class XmlPaser {
         }
         return "";
     }
+
 }

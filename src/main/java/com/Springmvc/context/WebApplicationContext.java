@@ -33,12 +33,15 @@ public class WebApplicationContext {
     }
     //初始化容器
     public void refresh(){
+        //通过路径拿到配置文件名
         String basePackage = XmlPaser.getBasePackage(contextConfigLocation.split(":")[1]);
+
+        //com.bruce.service
+        //com.bruce.controller
         String[] basePackages = basePackage.split(",");
         if(basePackages.length>0){
+            //遍历包中的类并添加进classNameList
             for(String pac :basePackages){
-//              com.bruce.service
-//              com.bruce.controller
                 executeScanPackage(pac);
             }
             System.out.println("The context in SpringMVC is:"+classNameList);
@@ -48,12 +51,12 @@ public class WebApplicationContext {
             System.out.println("The Bean in Spring is:"+iocMap);
             //注入操作
             executeAutowired();
-
-
         }
     }
 
-    //实现spring容器中对象的属性依赖注入, *CLASS类中declaredField方法
+    /***
+     * 实现spring容器中对象的属性依赖注入, *CLASS类中declaredField方法
+     */
     private void executeAutowired() {
         try {
             if(iocMap.isEmpty()){
@@ -84,7 +87,9 @@ public class WebApplicationContext {
         }
     }
 
-    //实例化Spring容器中的实例化对象
+    /***
+     * 通过反射机制实例化Spring容器中的实例化对象,并且加入iocMap<类名,实例化对象>
+     */
     private void executionBean() {
         if(classNameList ==null){
             throw new ContextException("没有扫描到的实例化对象");
@@ -95,7 +100,7 @@ public class WebApplicationContext {
                 //isAnnotationPresent判断是否有注解
                 if(clazz.isAnnotationPresent(Controller.class)){
                     //控制层类com.bruce.controller
-                    //得到控制层的类,.substring(0,1)将第一个字母转成小写UserController->userController
+                    //得到控制层的类名, .substring(0,1)将第一个字母转成小写UserController->userController
                     String beanName = clazz.getSimpleName().substring(0,1).toLowerCase()+clazz.getSimpleName().substring(1);
                     iocMap.put(beanName, clazz.newInstance());
                 }else if(clazz.isAnnotationPresent(Service.class)){
@@ -124,7 +129,10 @@ public class WebApplicationContext {
         }
     }
 
-    //  扫描目录下的包
+    /***
+     * 扫描目录下包中的类,并添加进classNameList(保存类名的集合)
+     * @param pac
+     */
     public void executeScanPackage(String pac){
         //com.bruce.service
         URL url = this.getClass().getClassLoader().getResource("/"+pac.replaceAll("\\.", "/"));
