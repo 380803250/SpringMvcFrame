@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
     public List<User> findUser(String name) {
         System.out.print("查询的参数是:");
         List<User> list = new ArrayList<>();
-        list.add(new User("380803250","老王", 1));
-        list.add(new User("admin","老王", 2));
+        list.add(new User("380803250","daChen", 1));
+        list.add(new User("admin","123", 2));
         return list;
     }
 }

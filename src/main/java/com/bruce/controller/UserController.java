@@ -19,14 +19,14 @@ public class UserController {
     UserService userservice;
 
     @RequestMapping("/user/query")
-    public void findUser(HttpServletRequest req, HttpServletResponse res,@RequestPram("name") String name){
+    public void findUser(HttpServletRequest req, HttpServletResponse res,@RequestPram("username") String name){
         //处理响应中文代码问题
-        res.setContentType("txt/html; charset=utf-8");
+        res.setContentType("text/html; charset=utf-8");
         try {
             List<User> list = userservice.findUser(name);
-            PrintWriter pw = res.getWriter();
-            pw.print("<h1>SpringMvc控制器"+name+"<h1>");
-            pw.print("SpringMvc done"+name);
+            PrintWriter out = res.getWriter();
+            out.print("<h1>SpringMvc控制器:"+name+"<h1>");
+            out.print("SpringMvc done"+name);
         } catch (IOException e) {
             e.printStackTrace();
         }

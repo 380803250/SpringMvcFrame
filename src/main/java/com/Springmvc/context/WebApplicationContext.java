@@ -22,6 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebApplicationContext {
     //得到springmvc.xml
     String contextConfigLocation;
+
     List<String> classNameList = new ArrayList<String>();
 
     //spring的IOC容器
@@ -73,7 +74,7 @@ public class WebApplicationContext {
                         }
                         declaredField.setAccessible(true);
                         //属性注入 使用反射给属性赋值
-                        declaredField.set(bean, iocMap.get(iocMap.get(beanName)));
+                        declaredField.set(bean, iocMap.get(beanName));
                     }
                 }
             }
