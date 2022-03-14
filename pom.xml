@@ -38,6 +38,7 @@
 <!--      <artifactId>dom4j</artifactId>-->
 <!--      <version>2.1.3</version>-->
 <!--    </dependency>-->
+<!--    读XML标签-->
     <dependency>
       <groupId>org.dom4j</groupId>
       <artifactId>dom4j</artifactId>

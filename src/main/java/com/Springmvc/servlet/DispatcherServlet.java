@@ -75,6 +75,7 @@ public class DispatcherServlet extends HttpServlet {
                         RequestMapping RequestMappingAnnotation = declaredMethod.getAnnotation(RequestMapping.class);
                         // /user/query
                         String uri = RequestMappingAnnotation.value();
+                        //实例化映射类对象
                         MyHandler handler= new MyHandler(uri, entry.getValue(), declaredMethod);
                         handlerList.add(handler);
                     }
@@ -97,7 +98,7 @@ public class DispatcherServlet extends HttpServlet {
                 resp.getWriter().print("<h1>handler not found!<h1>");
             }else{
                 Class<?>[] parameterTypes = handler.getMethod().getParameterTypes();
-                //定义一个参数的数组
+                //定义一个保存参数的数组
                 Object[] params = new Object[parameterTypes.length];
 
                 for(int i = 0; i<parameterTypes.length;i++){
@@ -108,7 +109,7 @@ public class DispatcherServlet extends HttpServlet {
                         params[i] = resp;
                     }
                 }
-                //获取请求中的参数集合
+                //获取Request请求中的参数集合
                 Map<String, String[]> parameterMap = req.getParameterMap();
                 for(Map.Entry<String, String[]> entry:parameterMap.entrySet()){
                     String name = entry.getKey();
@@ -118,6 +119,7 @@ public class DispatcherServlet extends HttpServlet {
                     if(index!=-1){
                         params[index] = value;
                     }else{
+                        //拿到方法的参数命
                         List<String> names = getParameterNames(handler.getMethod());
                         System.out.println(names);
                         for(int i = 0; i<names.size(); i++){
@@ -131,10 +133,11 @@ public class DispatcherServlet extends HttpServlet {
                     //未优化前的输出赋值,只能依靠参数位置约束来确定
                     //params[2] = value;
                 }
+
                 //调用控制器中的方法(void方法)
                 //handler.getMethod().invoke(handler.getController(), params);
 
-                //调用控制器中的方法(String方法)
+                //调用控制器中的方法(String方法),传入方法的类和参数,方法的返回值
                 Object result = handler.getMethod().invoke(handler.getController(), params);
                 //controller中String类型方法转发到user.jsp
                 if(result instanceof String){

@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//映射类
 public class MyHandler {
     private String url;
     private Object controller;

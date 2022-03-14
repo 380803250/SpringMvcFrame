@@ -56,6 +56,7 @@ public class WebApplicationContext {
 
     /***
      * 实现spring容器中对象的属性依赖注入, *CLASS类中declaredField方法
+     * 给controller里的userService赋值
      */
     private void executeAutowired() {
         try {
@@ -70,6 +71,7 @@ public class WebApplicationContext {
                 for (Field declaredField : declaredFields) {
                     if(declaredField.isAnnotationPresent(Autowired.class)){
                         Autowired AutowiredAnnotation = declaredField.getAnnotation(Autowired.class);
+                        //将要赋的值
                         String beanName = AutowiredAnnotation.value();
                         if("".equals(beanName)){
                             Class<?> type = declaredField.getType();
